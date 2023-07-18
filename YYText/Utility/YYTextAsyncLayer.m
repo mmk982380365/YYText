@@ -200,7 +200,14 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
     } else {
         [_sentinel increase];
         if (task.willDisplay) task.willDisplay(self);
-        UIGraphicsBeginImageContextWithOptions(CGSizeEqualToSize(self.bounds.size, CGSizeZero) ? CGSizeMake(10, 10) : self.bounds.size, self.opaque, self.contentsScale);
+        CGSize size = self.bounds.size;
+        if (size.width == 0) {
+            size.width = 10;
+        }
+        if (size.height == 0) {
+            size.height = 10;
+        }
+        UIGraphicsBeginImageContextWithOptions(size, self.opaque, self.contentsScale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         if (self.opaque && context) {
             CGSize size = self.bounds.size;
