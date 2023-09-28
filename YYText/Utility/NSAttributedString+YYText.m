@@ -1342,7 +1342,7 @@ return style. _attr_;
         UniChar *chars = NULL;
         chars = (void *)CFStringGetCharactersPtr(cfStr);
         if (!chars) {
-            chars = malloc(str.length * sizeof(UniChar));
+            chars = calloc(1, str.length * sizeof(UniChar));
             if (chars) {
                 needFree = YES;
                 CFStringGetCharacters(cfStr, CFRangeMake(0, str.length), chars);

@@ -77,9 +77,9 @@ static int matrix_invert(__CLPK_integer N, double *matrix) {
     
     if (N > 6) {
         need_free = true;
-        pivot = malloc(N * N * sizeof(__CLPK_integer));
+        pivot = calloc(1, N * N * sizeof(__CLPK_integer));
         if (!pivot) return -1;
-        workspace = malloc(N * sizeof(double));
+        workspace = calloc(1, N * sizeof(double));
         if (!workspace) {
             free(pivot);
             return -1;

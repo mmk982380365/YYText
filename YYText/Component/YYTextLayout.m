@@ -495,7 +495,7 @@ dispatch_semaphore_signal(_lock);
     ctLines = CTFrameGetLines(ctFrame);
     lineCount = CFArrayGetCount(ctLines);
     if (lineCount > 0) {
-        lineOrigins = malloc(lineCount * sizeof(CGPoint));
+        lineOrigins = calloc(1, lineCount * sizeof(CGPoint));
         if (lineOrigins == NULL) goto fail;
         CTFrameGetLineOrigins(ctFrame, CFRangeMake(0, lineCount), lineOrigins);
     }
